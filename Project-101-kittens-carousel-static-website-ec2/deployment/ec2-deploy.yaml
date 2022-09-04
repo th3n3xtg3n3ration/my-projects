@@ -26,6 +26,7 @@ Resources:
             git clone https://github.com/th3n3xtg3n3ration/my-projects.git
             cd my-projects/Project-101-kittens-carousel-static-website-ec2/static-web/
             cp * /var/www/html/
+            systemctl restart httpd
 
   KCSWSecGroup:
     Type: AWS::EC2::SecurityGroup
