@@ -10,10 +10,10 @@ Resources:
       InstanceType: t2.micro
       KeyName: gen-1-ugur # Please use your key pair name without pem.
       SecurityGroups:
-        - !Ref CFNSecGroup
+        - !Ref KCSWSecGroup
       Tags:
         - Key: Name
-          Value: First-CFN-Instance
+          Value: First-KCSW-Instance
       UserData:
         Fn::Base64: 
           !Sub |
@@ -30,7 +30,7 @@ Resources:
   KCSWSecGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Enables SSH for CFN Instance # Required
+      GroupDescription: Enables SSH for KCSW Instance # Required
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 22
