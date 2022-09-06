@@ -20,11 +20,11 @@ Resources:
         - IpProtocol: tcp #ipprotocol
           FromPort: 80
           ToPort: 80
-          CidrIp: 0.0.0.0
+          CidrIp: 0.0.0.0/0
         - IpProtocol: tcp #ipprotocol
           FromPort: 22
           ToPort: 22
-          CidrIp: 0.0.0.0
+          CidrIp: 0.0.0.0/0
 
   WebServerHost:
     Type: AWS::EC2::Instance
@@ -51,6 +51,11 @@ Resources:
             wget $FOLDER/cat2.jpg
             wget $FOLDER/cat3.png
             systemctl start httpd
-            systemctl enable httpd 
+            systemctl enable httpd
 
 Outputs:
+  WebsiteURL:
+    Value: !Sub
+      - http://${PublicAddress}
+      - PublicAddress: !GetAtt WebServerHost.PublicDnsName
+    Description: Kittens Carousel Application URL
